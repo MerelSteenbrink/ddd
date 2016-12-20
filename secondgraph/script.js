@@ -1,8 +1,12 @@
 
-// Select svg and take width and heigh in html
+// Select svg and take width and heighT in html
 var svg = d3.select("svg"),
     width = +svg.attr("width"),
     height = +svg.attr("height");
+
+// defines a function color with input a number and output a hex
+var color = d3.scaleOrdinal(d3.schemeCategory20);
+
 
 // create the document with centred force
 var simulation = d3.forceSimulation()
@@ -10,14 +14,6 @@ var simulation = d3.forceSimulation()
     .force("charge", d3.forceManyBody())
     .force("center", d3.forceCenter(width / 2, height / 2));
 
-
-d3.json("data.json", function(error, json) {
-  console.log(json)
-  console.log(json.nodes)
-  console.log(json.links)
-
-
-})
 
 d3.json("data.json", function(error, json) {
 
@@ -28,23 +24,26 @@ d3.json("data.json", function(error, json) {
     .selectAll("line")
     .data(json.links)
     .enter().append("line")
-    .attr("stroke-width", 10);
+    .attr("stroke-width",8);
 
-  //define all nodes, in one container, g
+  // define all nodes, in one container, g
   var node = svg.append("g")
     .attr("class", "nodes")
     .selectAll("circle")
     .data(json.nodes)
     .enter().append("circle")
-    .attr("r", 10);
+    .attr("r", 10)
+    .attr("fill", function(d) {return color(d.group)});
 
 simulation
       .nodes(json.nodes)
       .on("tick", ticked);
 
-  simulation.force("link")
+simulation.force("link")
       .links(json.links);
 
+// This is the listener, wich is executed every time an internall timer ticks
+//
   function ticked() {
     link
         .attr("x1", function(d) { return d.source.x; })
@@ -58,3 +57,7 @@ simulation
   }
 });
 
+
+
+//QUESTION: why can you do d.x  and d.y ?? Where do these coordinates come from??
+//HOW DO THESE NODES GET THEIR PLACES??
