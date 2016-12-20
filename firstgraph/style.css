@@ -1,0 +1,13 @@
+.fillie {
+   background:#DF5B57;
+   color: white;
+}
+
+.nodes {
+      font: 10px sans-serif;
+      background-color: orange;
+      text-align: right;
+      padding: 3px;
+      margin: 1px;
+      color: white;
+    }
