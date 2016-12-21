@@ -5,10 +5,9 @@ var dataset = {
 {"name": "Nicola Sturgeon", "size": 19 },
 {"name": "Philip Hammod", "size": 42 },
 {"name": "Angela Merkel", "size": 3 }
-
 ]}
 
-var diameter = 600;
+var diameter = 800;
     var color = d3.scaleOrdinal(d3.schemeCategory20);
 
     var bubble = d3.pack(dataset)

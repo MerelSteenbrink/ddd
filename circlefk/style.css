@@ -1,13 +1,12 @@
-g {
-  background: red;
+.container {
+  font: sans-serif;
+  background: #df5b57;
+  text-align: center;
+  padding: 20px;
 }
 
-text {
+text{
+  color: white;
   font: 10px sans-serif;
   text-anchor: middle;
-}
-
-.node--hover circle {
-  stroke: #000;
-  stroke-width: 1.2px;
 }
