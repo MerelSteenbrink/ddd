@@ -1,12 +1,12 @@
 {
   "nodes": [
     {"id": "Meike", "group": 1, "times": 10},
-    {"id": "Merel", "group": 1, "times": 1},
+    {"id": "Merel", "group": 1, "times": 4},
     {"id": "Saskia", "group": 1, "times": 10},
     {"id": "Doreth", "group": 1, "times": 8},
     {"id": "Santi", "group": 2, "times": 10},
-    {"id": "Zinzy", "group": 2, "times": 3},
-    {"id": "Gina", "group": 2, "times": 3},
+    {"id": "Zinzy", "group": 2, "times": 5},
+    {"id": "Gina", "group": 2, "times": 5},
     {"id": "Noortje", "group": 3, "times": 10}
   ],
   "links": [

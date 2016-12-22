@@ -33,9 +33,10 @@ d3.json("data.json", function(error, json) {
     .data(json.nodes)
     .enter().append("circle")
     .attr("r", function(d) {return d.times})
-    .attr("fill", function(d) {return color(d.group)});
+    .attr("fill", function(d) {return color(d.group)})
 
-
+  node.append("title")
+    .text(function(d) {return d.id;})
 
 simulation
       .nodes(json.nodes)
