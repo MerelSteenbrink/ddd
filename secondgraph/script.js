@@ -1,5 +1,5 @@
 
-// Select svg and take width and heighT in html
+// Select svg and take width and height in html
 var svg = d3.select("svg"),
     width = +svg.attr("width"),
     height = +svg.attr("height");
@@ -24,7 +24,7 @@ d3.json("data.json", function(error, json) {
     .selectAll("line")
     .data(json.links)
     .enter().append("line")
-    .attr("stroke-width",8);
+    .attr("stroke-width", function(d) {return d.value});
 
   // define all nodes, in one container, g
   var node = svg.append("g")
@@ -32,8 +32,10 @@ d3.json("data.json", function(error, json) {
     .selectAll("circle")
     .data(json.nodes)
     .enter().append("circle")
-    .attr("r", 10)
+    .attr("r", function(d) {return d.times})
     .attr("fill", function(d) {return color(d.group)});
+
+
 
 simulation
       .nodes(json.nodes)
@@ -59,5 +61,7 @@ simulation.force("link")
 
 
 
+
 //QUESTION: why can you do d.x  and d.y ?? Where do these coordinates come from??
 //HOW DO THESE NODES GET THEIR PLACES??
+//// --> that's how force works

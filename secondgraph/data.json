@@ -1,26 +1,25 @@
 {
   "nodes": [
-    {"id": "Meike", "group": 1},
-    {"id": "Merel", "group": 1},
-    {"id": "Saskia", "group": 1},
-    {"id": "Doreth", "group": 1},
-    {"id": "Santi", "group": 2},
-    {"id": "Zinzy", "group": 2},
-    {"id": "Gina", "group": 2},
-    {"id": "Noortje", "group": 3}
+    {"id": "Meike", "group": 1, "times": 10},
+    {"id": "Merel", "group": 1, "times": 1},
+    {"id": "Saskia", "group": 1, "times": 10},
+    {"id": "Doreth", "group": 1, "times": 8},
+    {"id": "Santi", "group": 2, "times": 10},
+    {"id": "Zinzy", "group": 2, "times": 3},
+    {"id": "Gina", "group": 2, "times": 3},
+    {"id": "Noortje", "group": 3, "times": 10}
   ],
   "links": [
     {"source": "Meike", "target": "Saskia", "value": 5},
     {"source": "Merel", "target": "Doreth", "value": 5},
-    {"source": "Gina", "target": "Zinzy", "value": 5},
+    {"source": "Gina", "target": "Zinzy", "value": 4},
     {"source": "Gina", "target": "Zinzy", "value": 5},
      {"source": "Meike", "target": "Zinzy", "value": 5},
-    {"source": "Meike", "target": "Noortje", "value": 5},
+    {"source": "Meike", "target": "Noortje", "value": 1},
     {"source": "Merel", "target": "Noortje", "value": 5},
-    {"source": "Noortje", "target": "Zinzy", "value": 5},
+    {"source": "Noortje", "target": "Zinzy", "value": 10},
     {"source": "Santi", "target": "Merel", "value": 5},
-    {"source": "Saskia", "target": "Doreth", "value": 5},
+    {"source": "Saskia", "target": "Doreth", "value": 1},
     {"source": "Saskia", "target": "Merel", "value": 5}
   ]
 }
-
