@@ -1,9 +1,10 @@
 {
-"children": [
-{"name": "Donald Trump", "size": 6 },
-{"name": "Theresa May", "size": 64 },
-{"name": "Nicola Sturgeon", "size": 19 },
-{"name": "Philip Hammod", "size": 42 },
-{"name": "Angela Merkel", "size": 3 }
+"children":
+[
+{"name": "Donald Trump", "times": 6 },
+{"name": "Theresa May", "times": 64 },
+{"name": "Nicola Sturgeon", "times": 19 },
+{"name": "Philip Hammod", "times": 42 },
+{"name": "Angela Merkel", "times": 3 }
 
 ]}

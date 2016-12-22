@@ -1,12 +1,16 @@
 .container {
-  font: sans-serif;
+  font: Georgia,serif;
   background: #df5b57;
   text-align: center;
   padding: 20px;
 }
 
-text{
+text {
   color: white;
-  font: 10px sans-serif;
+  font: 10px Georgia,serif;
   text-anchor: middle;
+}
+
+.node:hover {
+    fill: white;
 }
