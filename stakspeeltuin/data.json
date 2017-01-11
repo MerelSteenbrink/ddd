@@ -1,24 +1,24 @@
 [{
-        "name": "rule 1",
+        "name": "Rule 1",
         "buzz": 1234,
         "delta": 0.3
     }, {
-        "name": "rule 2",
+        "name": "law X",
         "buzz": 1354,
         "delta": 0.3
 
     }, {
-        "name": "rule 3",
+        "name": "Rule 3.6",
         "buzz": 1154,
         "delta": 0.1
 
     }, {
-        "name": "rule 4",
+        "name": "Law 4.rtg",
         "buzz": 1554,
         "delta": 0.3
 
     }, {
-        "name": "rule 5",
+        "name": "Rule rules",
         "buzz": 1004,
         "delta": 0.8
     }

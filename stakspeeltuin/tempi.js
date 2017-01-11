@@ -28,16 +28,10 @@ var data = [{
 
 console.log(data)
 
-function cumulise(data) {
-    var vori = 0
-    data[0].cum = 0
-    for (var i = 1; i < data.length; i++) {    
-        vori += data[i-1].buzz
-        data[i].cum = vori
-        data[i-1].cum_end = vori
-    }
-    
-}
+// TODO: sort
+data.sort(function(a, b) {
+  return b.buzz - a.buzz;
+});
 
-cumulise(data)
+
 console.log(data)

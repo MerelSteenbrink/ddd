@@ -15,12 +15,3 @@ h1 {
 	color: #6C7B8B;
 }
 
-.chart rect {
-  fill: steelblue;
-}
-
-.chart text {
-  fill: red;
-  font: 10px sans-serif;
-  text-anchor: end;
-}

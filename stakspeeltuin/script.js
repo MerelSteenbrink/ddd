@@ -37,7 +37,11 @@ d3.json("data.json", function(error, json) {
 
   x.domain([0, sum])
 
+  console.log(json)
+  json.sort(function(a, b) {  return b.buzz - a.buzz; });
+  console.log(json)
   cumulise(json)
+  console.log(json)
   
   // Make the coloured boxes
   var boxes = blokken.selectAll("g")
@@ -56,7 +60,7 @@ d3.json("data.json", function(error, json) {
   
   var text = boxes.append("text")
                   .text(function(d) {return d.name;}) 
-                  .attr("x", function(d) {return x(d.cum + d.buzz/1.5)})
+                  .attr("x", function(d) {return x(d.cum + d.buzz/2)})
                   .attr("y", 60)  
                   .attr("text-anchor", "middle")
                   .style("fill", "white")
@@ -72,7 +76,7 @@ d3.json("data.json", function(error, json) {
 
   var delta_text = bitches.append("text")
                   .text(function(d) {return "+ "+d.delta;}) 
-                  .attr("x", function(d) {return x(d.cum + d.buzz/1.5)})
+                  .attr("x", function(d) {return x(d.cum + d.buzz/2)})
                   .attr("y", 60)  
                   .attr("text-anchor", "middle")
                   .style("fill", function(d, i){return color(i)})
