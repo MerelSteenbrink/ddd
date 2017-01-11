@@ -14,7 +14,7 @@ var svg = d3.select("svg"),
   margin = {top: 10, right: 10, bottom: 20, left: 20},
   width = +svg.attr("width") - margin.left - margin.right,
   height = +svg.attr("height") - margin.top - margin.bottom
-  g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+  kader = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 
 // Set the range of the chart (eg the range to map the data on) 
@@ -31,23 +31,50 @@ d3.json("data.json", function(error, json) {
   
   var max = d3.max(json, function(d) {return d.buzz});
   var sum = d3.sum(json, function(d) {return d.buzz});
-  console.log(max)
-  console.log(sum)
+  
 
   x.domain([0, sum])
 
   cumulise(json)
-  console.log(json)
+  
+  var boxes = kader.selectAll("g")
+      .data(json)
+      .enter().append("g")
+      //.attr("transform", function(d) { return "translate(" + x(d.cum) + ", 0)"; })
+      .attr("width", function(d) {return x(d.buzz)})
 
-  g.selectAll("rect")
-    .data(json)
-    .enter().append("rect")
-    .attr("x", function(d) {return x(d.cum)})
-    .attr("y", margin.top)
-    .attr("height", 100)
-    .attr("width", function(d) {return x(d.buzz)})
-    .style("fill", function(d, i) { return color(i); })
-        
+      console.log(boxes)
+  var recs = boxes.append("rect")
+                  .attr("x", function(d) {return x(d.cum)})
+                  .attr("y", margin.top)
+                  .attr("height", 100)
+                  .attr("width", function(d) {return x(d.buzz)})
+                  .style("fill", function(d, i) { return color(i); })
+  
+  var text = boxes.append("text")
+                  .text(function(d) {return d.name;}) 
+                  .attr("x", function(d) {return x(d.cum + d.buzz/1.5)})
+                  .attr("y", 60)  
+                  .attr("text-anchor", "middle")
+                  .style("fill", "white")
+                  .style("font-size", "20px")
+                  .style("opacity", "0.5")
+
+/*var recs =   kader.selectAll("rect")
+                  .data(json)
+                  .enter().append("rect")
+                  .attr("x", function(d) {return x(d.cum)})
+                  .attr("y", margin.top)
+                  .attr("height", 100)
+                  .attr("width", function(d) {return x(d.buzz)})
+                  .style("fill", function(d, i) { return color(i); })
+  
+  recs.append("text")
+      .text(function(d) {return d.name;})
+      .attr("x", function(d) {return x(d.cum)})
+      .attr("y", 100)
+      .attr("text-anchor", "middle")
+       .attr("fill", "white");*/
 // define links, all in one container, g
  
   });     

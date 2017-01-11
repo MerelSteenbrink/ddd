@@ -1,4 +1,13 @@
 
+body {
+  background-color: #E0E0E0 ;
+}
+
+
+h1 {
+  color: black;
+}
+
 .container {
 	text-align: center;
 	padding: 30px;
