@@ -1,0 +1,17 @@
+
+.container {
+	text-align: center;
+	padding: 30px;
+	font-family: 'Lato', 'Open Sans', 'Helvetica Neue', 'Helvetica';
+	color: #6C7B8B;
+}
+
+.chart rect {
+  fill: steelblue;
+}
+
+.chart text {
+  fill: red;
+  font: 10px sans-serif;
+  text-anchor: end;
+}
