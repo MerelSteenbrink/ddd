@@ -1,24 +1,24 @@
 [{
-        "name": "regel1",
+        "name": "rule 1",
         "buzz": 1234,
         "delta": 0.3
     }, {
-        "name": "regel2",
+        "name": "rule 2",
         "buzz": 1354,
         "delta": 0.3
 
     }, {
-        "name": "regel3",
+        "name": "rule 3",
         "buzz": 1154,
         "delta": 0.1
 
     }, {
-        "name": "regel4",
+        "name": "rule 4",
         "buzz": 1554,
         "delta": 0.3
 
     }, {
-        "name": "regel5",
+        "name": "rule 5",
         "buzz": 1004,
         "delta": 0.8
     }

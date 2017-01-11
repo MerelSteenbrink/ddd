@@ -13,8 +13,10 @@ function cumulise(data) {
 var svg = d3.select("svg"),
   margin = {top: 10, right: 10, bottom: 20, left: 20},
   width = +svg.attr("width") - margin.left - margin.right,
-  height = +svg.attr("height") - margin.top - margin.bottom
-  kader = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+  height = +svg.attr("height") - margin.top - margin.bottom,
+  
+  deltas= svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+  blokken = svg.append("g").attr("transform", "translate(" + margin.left + ",100 )");
 
 
 // Set the range of the chart (eg the range to map the data on) 
@@ -37,7 +39,8 @@ d3.json("data.json", function(error, json) {
 
   cumulise(json)
   
-  var boxes = kader.selectAll("g")
+  // Make the coloured boxes
+  var boxes = blokken.selectAll("g")
       .data(json)
       .enter().append("g")
       //.attr("transform", function(d) { return "translate(" + x(d.cum) + ", 0)"; })
@@ -60,23 +63,21 @@ d3.json("data.json", function(error, json) {
                   .style("font-size", "20px")
                   .style("opacity", "0.5")
 
-/*var recs =   kader.selectAll("rect")
-                  .data(json)
-                  .enter().append("rect")
-                  .attr("x", function(d) {return x(d.cum)})
-                  .attr("y", margin.top)
-                  .attr("height", 100)
-                  .attr("width", function(d) {return x(d.buzz)})
-                  .style("fill", function(d, i) { return color(i); })
-  
-  recs.append("text")
-      .text(function(d) {return d.name;})
-      .attr("x", function(d) {return x(d.cum)})
-      .attr("y", 100)
-      .attr("text-anchor", "middle")
-       .attr("fill", "white");*/
-// define links, all in one container, g
- 
+  // Make deltas
+  var bitches = deltas.selectAll("g")
+      .data(json)
+      .enter().append("g")
+      //.attr("transform", function(d) { return "translate(" + x(d.cum) + ", 0)"; })
+      .attr("width", function(d) {return x(d.buzz)})
+
+  var delta_text = bitches.append("text")
+                  .text(function(d) {return "+ "+d.delta;}) 
+                  .attr("x", function(d) {return x(d.cum + d.buzz/1.5)})
+                  .attr("y", 60)  
+                  .attr("text-anchor", "middle")
+                  .style("fill", function(d, i){return color(i)})
+                  .style("font-size", "15px")
+
   });     
 
 
