@@ -86,7 +86,7 @@ var rect_old = graph.append("rect")
                     console.log("heigt")
                     console.log(y(d.old))
                     return box_width - y(d.old)})
-                  .style("fill", "red")
+                  .style("fill", "#00BC94")
 
 var rect_new = graph.append("rect")
                   .attr("class", "new_bar")
@@ -97,7 +97,13 @@ var rect_new = graph.append("rect")
                     
                     console.log(y(d.old))
                     return box_width - y(d.new)})
-                  .style("fill", "blue")
+                  .style("fill", "#2478A1")
+
+var name = boxes.append("text")
+                .text( function(d) {return d.name})
+                .attr("dy", ".3em")
+                .attr("transform",function(_, i) { return "translate("+ ( (margin + i*(box_width+padding))/2 )+","+ (box_heigth - margin) +")"; })
+
 
 // y.domain([0, d3.max(data, function(d) {
 //     return d.value; })])
