@@ -29,29 +29,34 @@ var persons = [
 var color = ["#a05d56", "#d0743c"];
 
 
-var margin = 10,
-    svg_height = 300 + 2*margin,
-    svg_width = 4*svg_height + 5*margin;
+var margin = 20,
+    padding = 10,
+    svg_height = 300
+    svg_width = 4*svg_height;
 
-var box_width = ( svg_width - 5*margin ) / 4
-console.log("boxwidth"+box_width)
+var box_width = (svg_width - 3*padding - 2*margin) / 4,
+    box_heigth = svg_height - 2*margin;
+
+var graph_height = box_width;
+
+console.log(box_width)
+
 // Set the range and make equal parts
 var x = d3.scaleBand()
     .range([0, box_width])
     .padding(0.1)
     .domain(["old", "new"])
 
-var all = persons.map(elt => elt.old).concat(persons.map(elt => elt.new))
-console.log(all)
-var max = d3.max(all)
+var all = persons.map(elt => elt.old).concat(persons.map(elt => elt.new)),
+ max = d3.max(all)
 
 var y = d3.scaleLinear()
-    .range([0, box_width])
+    .range([0, box_heigth])
     .domain([max, 0])
 
 
 // maek one big svg, all the boxes will be in there
-var svg = d3.select("body").append("svg")
+var svg = d3.select("#container").append("svg")
     .attr("width", svg_width)
     .attr("height", svg_height)
     
@@ -60,10 +65,19 @@ var boxes = svg.selectAll(".box")
               .enter().append("g")
               .attr("class", "box")
               .attr("width", box_width)
-              .attr("height", box_width)
-              .attr("transform", function(_, i) { return "translate("+ (i*box_width+margin) + ",0)"; });
+              .attr("height", box_heigth)
+              .attr("transform", function(_, i) { 
+                console.log(i*box_width+padding)
+                return "translate("+ ( (margin + i*(box_width+padding)) /2 ) + ","+margin+")" })
 
-var rect_old = boxes.append("rect")
+var graph = boxes.append("g")
+                .attr("class", "graph")
+                .attr("width", graph_height)
+                .attr("height", graph_height)
+                .attr("transform", function(_, i) { return "translate("+ ( (margin + i*(box_width+padding))/2 )+","+ (2*margin) +")"; });
+
+
+var rect_old = graph.append("rect")
                   .attr("class", "old_bar")
                   .attr("x", x.bandwidth())
                   .attr("y", function(d) { return y(d.old)})
@@ -74,7 +88,7 @@ var rect_old = boxes.append("rect")
                     return box_width - y(d.old)})
                   .style("fill", "red")
 
-var rect_new = boxes.append("rect")
+var rect_new = graph.append("rect")
                   .attr("class", "new_bar")
                   .attr("x", x.bandwidth() + 60)
                   .attr("y", function(d) { return y(d.new)})
