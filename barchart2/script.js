@@ -28,11 +28,13 @@ var persons = [
 
 var color = ["#a05d56", "#d0743c"];
 
+var conti = d3.select("#container")
+    svg_width = parseInt(conti.style('width'), 10),
+    svg_height = svg_width / 4
 
 var margin = 20,
-    padding = 10,
-    svg_height = 300
-    svg_width = 4*svg_height;
+    padding = 10
+    
 
 var box_width = (svg_width - 3*padding - 2*margin) / 4,
     box_heigth = svg_height - 4*margin;
