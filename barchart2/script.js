@@ -53,7 +53,7 @@ var all = persons.map(elt => elt.old).concat(persons.map(elt => elt.new)),
  max = d3.max(all)
 
 var y = d3.scaleLinear()
-    .range([graph_height, 0])
+    .range([graph_height -20, 0])
     .domain([0, max])
 
 
@@ -61,6 +61,7 @@ var y = d3.scaleLinear()
 var svg = d3.select("#container").append("svg")
     .attr("width", svg_width)
     .attr("height", svg_height)
+    .attr("class", "topaint")
     
 var boxes = svg.selectAll(".box")
               .data(persons)
