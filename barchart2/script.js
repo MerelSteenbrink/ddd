@@ -35,9 +35,9 @@ var margin = 20,
     svg_width = 4*svg_height;
 
 var box_width = (svg_width - 3*padding - 2*margin) / 4,
-    box_heigth = svg_height - 2*margin;
+    box_heigth = svg_height - 4*margin;
 
-var graph_height = box_width;
+var graph_height = box_width ;
 
 console.log(box_width)
 
@@ -51,8 +51,8 @@ var all = persons.map(elt => elt.old).concat(persons.map(elt => elt.new)),
  max = d3.max(all)
 
 var y = d3.scaleLinear()
-    .range([0, box_heigth])
-    .domain([max, 0])
+    .range([graph_height, 0])
+    .domain([0, max])
 
 
 // maek one big svg, all the boxes will be in there
@@ -65,7 +65,7 @@ var boxes = svg.selectAll(".box")
               .enter().append("g")
               .attr("class", "box")
               .attr("width", box_width)
-              .attr("height", box_heigth)
+              .attr("height", box_heigth + 30)
               .attr("transform", function(_, i) { return "translate("+ ( (margin + i*(box_width+padding)) ) + ","+margin+")" })
 
 var graph = boxes.append("g")
@@ -73,7 +73,7 @@ var graph = boxes.append("g")
                 .attr("width", graph_height)
                 .attr("height", graph_height)
                 .attr("x", padding)
-                .attr("y", padding)
+                .attr("y", 2*margin)
 
 
 var rect_old = graph.append("rect")
@@ -86,7 +86,7 @@ var rect_old = graph.append("rect")
 
 var rect_new = graph.append("rect")
                   .attr("class", "new_bar")
-                  .attr("x", x.bandwidth() + 60)
+                  .attr("x", x.bandwidth() + 55)
                   .attr("y", function(d) { return y(d.new)})
                   .attr("width", "50px")
                   .attr("height", function(d) { return box_width - y(d.new)})
@@ -102,8 +102,10 @@ var name = boxes.append("text")
                 .text( function(d) {return d.name})
                 .attr("dy", ".3em")
                 .attr("x", box_width/2 + padding + margin)
-                .attr("y", box_heigth)
+                .attr("y", box_heigth + 2*margin)
                 .attr("text-anchor", "middle")
+               
+                
 
 
 

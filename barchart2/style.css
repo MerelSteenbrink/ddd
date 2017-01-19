@@ -6,7 +6,7 @@
 
 body{
 	font-family: "Lato", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-   	background-color: #444242;
+   	background-color: #000000;
 	color: white;	
 }
 
@@ -15,5 +15,9 @@ text{
 }
 
 rect{
-	opacity: 0.5;
+	/*opacity: 0.5;*/
+}
+
+svg {
+	width: 80vw;
 }
