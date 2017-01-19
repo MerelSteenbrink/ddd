@@ -66,15 +66,14 @@ var boxes = svg.selectAll(".box")
               .attr("class", "box")
               .attr("width", box_width)
               .attr("height", box_heigth)
-              .attr("transform", function(_, i) { 
-                console.log(i*box_width+padding)
-                return "translate("+ ( (margin + i*(box_width+padding)) /2 ) + ","+margin+")" })
+              .attr("transform", function(_, i) { return "translate("+ ( (margin + i*(box_width+padding)) ) + ","+margin+")" })
 
 var graph = boxes.append("g")
                 .attr("class", "graph")
                 .attr("width", graph_height)
                 .attr("height", graph_height)
-                .attr("transform", function(_, i) { return "translate("+ ( (margin + i*(box_width+padding))/2 )+","+ (2*margin) +")"; });
+                .attr("x", padding)
+                .attr("y", padding)
 
 
 var rect_old = graph.append("rect")
@@ -82,10 +81,7 @@ var rect_old = graph.append("rect")
                   .attr("x", x.bandwidth())
                   .attr("y", function(d) { return y(d.old)})
                   .attr("width", "50px")
-                  .attr("height", function(d) {
-                    console.log("heigt")
-                    console.log(y(d.old))
-                    return box_width - y(d.old)})
+                  .attr("height", function(d) {return box_width - y(d.old)})
                   .style("fill", "#00BC94")
 
 var rect_new = graph.append("rect")
@@ -93,16 +89,24 @@ var rect_new = graph.append("rect")
                   .attr("x", x.bandwidth() + 60)
                   .attr("y", function(d) { return y(d.new)})
                   .attr("width", "50px")
-                  .attr("height", function(d) {
-                    
-                    console.log(y(d.old))
-                    return box_width - y(d.new)})
+                  .attr("height", function(d) { return box_width - y(d.new)})
                   .style("fill", "#2478A1")
 
+var delta = boxes.append("text")
+                  .attr("class", "delta")
+                  .attr("x", box_width/2 + padding + margin)
+                  .text( function(d) {return "+"+d.delta}) 
+                  .attr("text-anchor", "middle")
+                  
 var name = boxes.append("text")
                 .text( function(d) {return d.name})
                 .attr("dy", ".3em")
-                .attr("transform",function(_, i) { return "translate("+ ( (margin + i*(box_width+padding))/2 )+","+ (box_heigth - margin) +")"; })
+                .attr("x", box_width/2 + padding + margin)
+                .attr("y", box_heigth)
+                .attr("text-anchor", "middle")
+
+
+
 
 
 // y.domain([0, d3.max(data, function(d) {
