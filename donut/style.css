@@ -1,0 +1,20 @@
+
+body {
+  background-color: black ;
+}
+
+
+h1 {
+  color: black;
+}
+
+
+.arc text {
+  font: 10px sans-serif;
+  text-anchor: middle;
+  fill: white;
+}
+
+.arc path {
+  stroke: #fff;
+}
