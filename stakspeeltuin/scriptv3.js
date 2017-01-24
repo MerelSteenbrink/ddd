@@ -20,11 +20,11 @@ var svg = d3.select("svg"),
 
 
 // Set the range of the chart (eg the range to map the data on) 
-var x = d3.scaleLinear()
+var x = d3.scale.linear()
     .rangeRound([0, width]);
 
 //Set the colorscheme
-var color = d3.scaleOrdinal()
+var color = d3.scale.ordinal()
     .range(["#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
 
 //Get the data (in the json file)
@@ -58,6 +58,19 @@ d3.json("data.json", function(error, json) {
                   .attr("width", function(d) {return x(d.buzz)})
                   .style("fill", function(d, i) { return color(i); })
   
+  recs.on('mouseover', function(d){
+                  d3.selectAll("rect").style({opacity:'0.3'});
+                  d3.select(this).style("opacity", "1");                  
+            })
+   
+   recs.on('mouseout', function(){ d3.selectAll("rect").style("opacity", "1")
+                          
+                    });
+
+
+
+
+
   var text = boxes.append("text")
                   .text(function(d) {return d.name;}) 
                   .attr("x", function(d) {return x(d.cum + d.buzz/2)})

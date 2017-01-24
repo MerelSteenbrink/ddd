@@ -29,9 +29,7 @@ var data = [{
 console.log(data)
 
 // TODO: sort
-data.sort(function(a, b) {
-  return b.buzz - a.buzz;
-});
+data.sort(function(a, b) {  return b.buzz - a.buzz; });
 
 
 console.log(data)
