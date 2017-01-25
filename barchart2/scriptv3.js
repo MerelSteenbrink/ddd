@@ -1,28 +1,3 @@
-var persons = [
-
-    {
-        "name": "Theresa May",
-        "old": 100,
-        "new": 150,
-        "delta": 0.6
-    }, {
-        "name": "Trump",
-        "old": 200,
-        "new": 150,
-        "delta": 0.1
-    }, {
-        "name": "Jamie Oliver",
-        "old": 102,
-        "new": 103,
-        "delta": 0.8
-    }, {
-        "name": "Tim Barrow",
-        "old": 40,
-        "new": 30,
-        "delta": 0.5
-    }
-]
-
 
 
 var color = ["#a05d56", "#d0743c"];
@@ -46,7 +21,11 @@ console.log(box_width)
 var x = d3.scale.ordinal().rangeRoundBands([0, box_width], .1, 0.1)
         .domain(["old", "new"])
 
-var all = persons.map(elt => elt.old).concat(persons.map(elt => elt.new)),
+
+d3.json("data.json", function(error, data){
+  if (error) throw error;
+
+var all = data.map(elt => elt.old).concat(data.map(elt => elt.new)),
  max = d3.max(all)
 
 var y = d3.scale.linear()
@@ -61,7 +40,7 @@ var svg = d3.select("#container").append("svg")
     .attr("class", "topaint")
     
 var boxes = svg.selectAll(".box")
-              .data(persons)
+              .data(data)
               .enter().append("g")
               .attr("class", "box")
               .attr("width", box_width)
@@ -108,3 +87,4 @@ var name = boxes.append("text")
                 
 
 
+})

@@ -1,0 +1,24 @@
+[
+
+    {
+        "name": "Theresa May",
+        "old": 100,
+        "new": 150,
+        "delta": 0.6
+    }, {
+        "name": "Trump",
+        "old": 200,
+        "new": 150,
+        "delta": 0.1
+    }, {
+        "name": "Jamie Oliver",
+        "old": 102,
+        "new": 103,
+        "delta": 0.8
+    }, {
+        "name": "Tim Barrow",
+        "old": 40,
+        "new": 30,
+        "delta": 0.5
+    }
+]
