@@ -1,21 +1,21 @@
 
 
 var color = ["#a05d56", "#d0743c"];
+var padding = 20
 
 var conti = d3.select("#container")
-    svg_width = parseInt(conti.style('width'), 10),
-    svg_height = svg_width / 4
-
-var margin = 20,
-    padding = 10
+    svg_height = parseInt(conti.style('height'), 10),
+    console.log(svg_height)
+    svg_width = 4*svg_height - 6*padding
+    console.log(svg_width)
+    
     
 
-var box_width = (svg_width - 3*padding - 2*margin) / 4,
-    box_heigth = svg_height - 4*margin;
+var box_width = (svg_width - 2*padding) / 4,
+    box_heigth = box_width
 
-var graph_height = box_width ;
+var graph_height = (3*box_width)/4 ;
 
-console.log(box_width)
 
 // Set the range and make equal parts
 var x = d3.scale.ordinal().rangeRoundBands([0, box_width], .1, 0.1)
@@ -26,14 +26,14 @@ d3.json("data.json", function(error, data){
   if (error) throw error;
 
 var all = data.map(elt => elt.old).concat(data.map(elt => elt.new)),
- max = d3.max(all)
+    max = d3.max(all)
 
 var y = d3.scale.linear()
-    .range([graph_height -20, 0])
+    .range([graph_height, 0])
     .domain([0, max])
 
 
-// maek one big svg, all the boxes will be in there
+// make one big svg, all the boxes will be in there
 var svg = d3.select("#container").append("svg")
     .attr("width", svg_width)
     .attr("height", svg_height)
@@ -44,15 +44,16 @@ var boxes = svg.selectAll(".box")
               .enter().append("g")
               .attr("class", "box")
               .attr("width", box_width)
-              .attr("height", box_heigth + 30)
-              .attr("transform", function(_, i) { return "translate("+ ( (margin + i*(box_width+padding)) ) + ","+margin+")" })
+              .attr("height", box_heigth)
+              .attr("transform", function(_, i) { return "translate("+ ( (padding + i*box_width) ) + ","+padding+")" })
 
 var graph = boxes.append("g")
                 .attr("class", "graph")
-                .attr("width", graph_height)
+                .attr("width", box_width)
                 .attr("height", graph_height)
-                .attr("x", padding)
-                .attr("y", 2*margin)
+                .style("position", "absolute")
+                .attr("x", 0)
+                .attr("y", padding)
 
 
 var rect_old = graph.append("rect")
@@ -73,18 +74,15 @@ var rect_new = graph.append("rect")
 
 var delta = boxes.append("text")
                   .attr("class", "delta")
-                  .attr("x", box_width/2 + padding + margin)
+                  .attr("x", box_width/2 + padding)
                   .text( function(d) {return "+"+d.delta}) 
                   .attr("text-anchor", "middle")
                   
 var name = boxes.append("text")
                 .text( function(d) {return d.name})
                 .attr("dy", ".3em")
-                .attr("x", box_width/2 + padding + margin)
-                .attr("y", box_heigth + 2*margin)
+                .attr("x", box_width/2 + padding)
+                .attr("y", box_heigth + padding)
                 .attr("text-anchor", "middle")
-               
-                
-
-
+                    
 })
