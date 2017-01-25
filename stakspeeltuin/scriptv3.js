@@ -73,11 +73,11 @@ d3.json("data.json", function(error, json) {
 
   var text = boxes.append("text")
                   .text(function(d) {return d.name;}) 
-                  .attr("x", function(d) {return x(d.cum + d.buzz/2)})
-                  .attr("y", 60)  
-                  .attr("text-anchor", "middle")
+                  .attr("x", function(d) {return x(d.cum + 20)})
+                  .attr("y", 100)  
+                  .attr("text-anchor", "start")
                   .style("fill", "white")
-                  .style("font-size", "20px")
+                  .style("font-size", "10px")
                   .style("opacity", "0.5")
 
   // Make deltas
@@ -88,7 +88,7 @@ d3.json("data.json", function(error, json) {
       .attr("width", function(d) {return x(d.buzz)})
 
   var delta_text = upper.append("text")
-                  .text(function(d) {return "+ "+d.delta;}) 
+                  .text(function(d) {return "+ "+d.delta*100+"%";}) 
                   .attr("x", function(d) {return x(d.cum + d.buzz/2)})
                   .attr("y", 60)  
                   .attr("text-anchor", "middle")

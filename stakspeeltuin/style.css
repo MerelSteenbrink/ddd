@@ -6,6 +6,7 @@ body {
 
 h1 {
   color: white;
+  opacity: 0.8;
 }
 
 .container {
@@ -13,6 +14,7 @@ h1 {
 	padding: 30px;
 	font-family: 'Lato', 'Open Sans', 'Helvetica Neue', 'Helvetica';
 	color: #6C7B8B;
+	width: 50vw;
 }
 
 rect {
