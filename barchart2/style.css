@@ -7,10 +7,8 @@
 
 body{
 	font-family: "Lato", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-   	
-	background-image: url("https://images.unsplash.com/photo-1437205695086-b44352699f59?dpr=1&auto=format&fit=crop&w=1199&h=1799&q=80&cs=tinysrgb&crop=");
-	background-repeat: no-repeat;
-  	background-size: cover !important;
+   	background: black;	
+  	
 	color: white;	
 }
 
@@ -23,7 +21,7 @@ rect{
 }
 
 .topaint{
-		background-color: rgba(204,204,200,0.5);         	 
+		background-color: rgba(204,204,200,0.3);         	 
     	padding: 30px;
 }
 

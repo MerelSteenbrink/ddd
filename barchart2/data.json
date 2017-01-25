@@ -4,21 +4,21 @@
         "name": "Theresa May",
         "old": 100,
         "new": 150,
-        "delta": 0.6
+        "delta": 60
     }, {
         "name": "Trump",
         "old": 200,
         "new": 150,
-        "delta": 0.1
+        "delta": -10
     }, {
         "name": "Jamie Oliver",
         "old": 102,
         "new": 103,
-        "delta": 0.8
+        "delta": 1
     }, {
         "name": "Tim Barrow",
         "old": 40,
         "new": 30,
-        "delta": 0.5
+        "delta": -2
     }
 ]

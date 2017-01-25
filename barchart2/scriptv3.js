@@ -1,6 +1,15 @@
 
-
-var color = ["#a05d56", "#d0743c"];
+var colors = [{
+  name: "Last week", 
+  color: "#00BC94",
+  class: "old_bar"
+},
+{
+  name: "Now", 
+  color: "#2478A1",
+  class: "new_bar"
+}]
+var color = ["#00BC94", "#2478A1"];
 var padding = 20
 
 var conti = d3.select("#container")
@@ -49,6 +58,7 @@ var boxes = svg.selectAll(".box")
               .attr("height", box_heigth)
               .attr("transform", function(_, i) { return "translate("+ ( (padding + i*box_width) ) + ","+padding+")" })
 
+//Two rects will be in here
 var graph = boxes.append("g")
                 .attr("class", "graph")
                 .attr("width", box_width)
@@ -57,81 +67,105 @@ var graph = boxes.append("g")
                 .attr("transform", "translate(0,10)")
 
 
+// left rect
 var rect_old = graph.append("rect")
                   .attr("class", "old_bar")
                   .attr("x", x.rangeBand())
                   .attr("y", function(d) { return y(d.old)})
                   .attr("width", box_width/5)
                   .attr("height", function(d) {return box_width - y(d.old)})
-                  .style("fill", "#00BC94")
+                  .style("fill", color[0])
                   .style("transition", "all 800ms ease")
-
+//buzz scores on top
           graph.append("text")
                 .text(function(d) {return d.old})
                 .attr("y", function(d) { return y(d.old) - 3})
                 .attr("x", x.rangeBand())
                 .attr("dx", ".10em")
                 .attr("dy", ".10em")
-                .style("fill", "#00BC94")
+                .style("fill", color[0])
+                .style("font-size", "10px")
 
-
+//second rect
 var rect_new = graph.append("rect")
                   .attr("class", "new_bar")
                   .attr("x", x.rangeBand() + 5 + box_width/5 )
                   .attr("y", function(d) { return y(d.new)})
                   .attr("width", box_width/5)
                   .attr("height", function(d) { return box_width - y(d.new)})
-                  .style("fill", "#2478A1")
+                  .style("fill", color[1])
                   .style("transition", "all 800ms ease")
 
-
+//buzz scores on top
           graph.append("text")
                 .text(function(d) {return d.new})
                 .attr("y", function(d) { return y(d.new) - 3})
                 .attr("x", x.rangeBand() + 5 + box_width/5)
                 .attr("dx", ".10em")
                 .attr("dy", ".10em")
-                 .style("fill", "#2478A1")
+                .style("font-size", "10px")
+                .style("fill", color[1])
 
 
 var delta = boxes.append("text")
                   .attr("class", "delta")
                   .attr("x", box_width/2 + padding)
-                  .text( function(d) {return "+"+d.delta}) 
+                  .text( function(d) {return d.delta+"%"}) 
                   .attr("text-anchor", "middle")
                   
 var name = boxes.append("text")
                 .text( function(d) {return d.name})
                 .attr("dy", ".3em")
-                .attr("x", box_width/2 + padding)
+                .style("position", "absolute")
+                .attr("x", box_width/2)
                 .attr("y", box_heigth + padding)
-                .attr("text-anchor", "middle")
+                .attr("text-anchor", "start")
 
-  rect_old.on('mouseover', function(d){
-                   d3.selectAll("rect").style({opacity:'0.3'});
+
+// Make a legend
+
+  var legend = svg.append("g")
+                  .attr("class", "legend")
+                  .attr("width", "50px")
+                  .attr("height", "50px")
+
+
+                legend.selectAll(".blocks")
+                  .data(colors)
+                  .enter().append("rect")
+                  .attr("class", "blocks")
+                  .attr("class", function(d) {return d.class})
+                  .attr("width", "10px")
+                  .attr("height", "10px")
+                  .attr("y", function(d, i) {return 15*i})
+                  .style("fill", function(d) {return d.color})
+
+
+                legend.selectAll(".legend-name")
+                  .data(colors)
+                  .enter().append("text")
+                  .text(function(d) {return d.name})                  
+                  .attr("class", function(d) {return d.name})
+                  .attr("class", function(d) {return d.class})
+                  .attr("y", function(d, i) {return 10 + 15*i})
+                  .attr("x", "15px")
+
+
+
+
+var oldies = d3.selectAll(".old_bar")
+
+  oldies.on('mouseover', function(d){
+                   d3.selectAll(".new_bar").style({opacity:'0.2'});
                    d3.selectAll(".old_bar").style("opacity",'1');
-                   d3.select("svg").append("text")
-                    .style("transition", "all 800ms ease")
-                    .attr("class", "text-title")
-                    .text("last week")
-                    .attr("x", svg_width/2)
-                    .style("text-anchor", "middle")                    
-                    .style("fill", "#00BC94")
-                    .style("font-size", "30px")   
-                           
+                   
              })
 
-  rect_new.on('mouseover', function(d){
-                   d3.selectAll("rect").style({opacity:'0.3'});
-                   d3.selectAll(".new_bar").style("opacity",'1');
-                   d3.select("svg").append("text")
-                    .attr("class", "text-title")
-                    .text("now")
-                    .attr("x", svg_width/2)
-                    .style("text-anchor", "middle")    
-                    
-                    .style("fill", "#2478A1")
-                    .style("font-size", "30px")                                   
+  var newbies = d3.selectAll(".new_bar")
+
+  newbies.on('mouseover', function(d){
+                   d3.selectAll(".old_bar").style({opacity:'0.2'});
+                   d3.selectAll(".new_bar").style("opacity",'1');                     
                            
              })
     
@@ -143,7 +177,6 @@ var name = boxes.append("text")
                          d3.selectAll("rect").style("opacity", "1")
                          d3.select(".text-title").remove();
                    });
-
 
 
                    
