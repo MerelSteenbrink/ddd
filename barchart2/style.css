@@ -25,3 +25,10 @@ rect{
     	padding: 30px;
 }
 
+.old_fill {
+	fill: #00BC94;
+}
+
+.new_fill {
+	fill: #2478A1;
+}

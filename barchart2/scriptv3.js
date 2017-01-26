@@ -1,21 +1,5 @@
 
-var colors = [{
-  name: "Last week", 
-  color: "#00BC94",
-  class: "old_bar"
-},
-
-{
-  name: "Now", 
-  color: "#2478A1",
-  class: "new_bar"
-}]
-
-var color = ["#00BC94", "#2478A1"]
-
 var padding = 20
-
-
 
 
 d3.json("data.json", function(error, data){
@@ -77,23 +61,21 @@ var graph = boxes.append("g")
 
 // left rect
 var rect_old = graph.append("rect")
-                  .attr("class", "old_bar")
+                  .attr("class", "old_bar old_fill")
                   .attr("x", x.rangeBand())
                   .attr("y", function(d) { return y(d.old)})
                   .attr("width", box_width/5)
                   .attr("height", function(d) {return box_width - y(d.old)})
-                  .style("fill", color[0])
                   .style("transition", "all 800ms ease")
 
 
 //second rect
 var rect_new = graph.append("rect")
-                  .attr("class", "new_bar")
+                  .attr("class", "new_bar new_fill")
                   .attr("x", x.rangeBand() + 5 + box_width/5 )
                   .attr("y", function(d) { return y(d.new)})
                   .attr("width", box_width/5)
                   .attr("height", function(d) { return box_width - y(d.new)})
-                  .style("fill", color[1])
                   .style("transition", "all 800ms ease")
 
 //buzz scores on top
@@ -103,7 +85,7 @@ var rect_new = graph.append("rect")
                 .attr("x", x.rangeBand())
                 .attr("dx", ".10em")
                 .attr("dy", ".10em")
-                .style("fill", color[0])
+                .attr("class", "old_fill")
                 .style("font-size", "10px")
 
           graph.append("text")
@@ -113,7 +95,7 @@ var rect_new = graph.append("rect")
                 .attr("dx", ".10em")
                 .attr("dy", ".10em")
                 .style("font-size", "10px")
-                .style("fill", color[1])
+                .attr("class", "new_fill")
 
 // ------------> Arrowzzzzz
         // main line
@@ -189,26 +171,30 @@ var legend = svg.append("g")
                 .attr("height", "50px")
 
 
-                legend.selectAll(".blocks")
-                  .data(colors)
-                  .enter().append("rect")
-                  .attr("class", "blocks")
-                  .attr("class", function(d) {return d.class})
+              legend.append("rect")
+                  .attr("class", "blocks old_fill old_bar")
                   .attr("width", "10px")
                   .attr("height", "10px")
-                  .attr("y", function(d, i) {return 15*i})
-                  .style("fill", function(d) {return d.color})
+                  .attr("y", 0)
 
+              legend.append("rect")
+                  .attr("class", "blocks new_fill new_bar")
+                  .attr("width", "10px")
+                  .attr("height", "10px")
+                  .attr("y", 15)
 
-                legend.selectAll(".legend-name")
-                  .data(colors)
-                  .enter().append("text")
-                  .text(function(d) {return d.name})                  
-                  .attr("class", function(d) {return d.name})
-                  .attr("class", function(d) {return d.class})
-                  .attr("y", function(d, i) {return 10 + 15*i})
-                  .attr("x", "15px")
+              legend.append("text")
+                    .text("Old")
+                    .attr("class", "blocks old_bar")
+                    .attr("x", "15px")
+                    .attr("y", 10)
 
+              legend.append("text")
+                    .text("Now")
+                    .attr("class", "blocks new_bar")
+                    .attr("x", "15px")
+                    .attr("y", 25)
+              
 
 
 

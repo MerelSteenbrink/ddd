@@ -22,15 +22,5 @@
         "old": 140,
         "new": 30,
         "delta": -40
-    }, {
-        "name": "Princess Nokia",
-        "old": 4,
-        "new": 400,
-        "delta": 200
-    },{
-        "name": "Miri",
-        "old": 300,
-        "new": 4,
-        "delta": -102
     }
 ]
