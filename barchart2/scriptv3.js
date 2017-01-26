@@ -109,6 +109,8 @@ var rect_new = graph.append("rect")
                 .style("fill", color[1])
 
 // ------------> Arrowzzzzz
+        // main line
+
         graph.append("line")
             .attr("x1", x.rangeBand() + 5 + box_width/5 + box_width/10 )
             .attr("x2", x.rangeBand() + 5 + box_width/5 + box_width/10 )
@@ -118,7 +120,8 @@ var rect_new = graph.append("rect")
             .attr("stroke-width", 1)
             .attr("stroke", "white")
             .attr("stroke-dasharray","5,2")
-
+        
+        // left line
         graph.append("line")
             .attr("x1", x.rangeBand() + 5 + box_width/5 + box_width/10 - 6 )
             .attr("y1",function(d) { return (d.old > d.new) ? y(d.new) - 8 : y(d.new) + 8})
@@ -126,7 +129,8 @@ var rect_new = graph.append("rect")
             .attr("y2", function(d) { return y(d.new)})
             .attr("stroke-width", 1)
             .attr("stroke", "white")
-            
+        
+        //right line
         graph.append("line")
             .attr("x1", x.rangeBand() + 5 + box_width/5 + box_width/10 + 6 )
             .attr("y1",function(d) { return (d.old > d.new) ? y(d.new) - 8 : y(d.new) + 8})
@@ -134,6 +138,18 @@ var rect_new = graph.append("rect")
             .attr("y2", function(d) { return y(d.new)})
             .attr("stroke-width", 1)
             .attr("stroke", "white")
+
+
+        //underline
+            graph.append("line")
+            .attr("x1", x.rangeBand() + 5 + box_width/5 + box_width/10 - 6 )
+            .attr("x2", x.rangeBand() + 5 + box_width/5 + box_width/10 + 6 )
+            .attr("y1", function(d) { return y(d.old)})
+            .attr("y2", function(d) { return y(d.old)})
+            
+            .attr("stroke-width", 1)
+            .attr("stroke", "white")
+
 
 
 var deltas =  graph.append("text")
