@@ -4,38 +4,43 @@ var colors = [{
   color: "#00BC94",
   class: "old_bar"
 },
+
 {
   name: "Now", 
   color: "#2478A1",
   class: "new_bar"
 }]
 
-var color = ["#00BC94", "#2478A1"];
+var color = ["#00BC94", "#2478A1"]
+
 var padding = 20
 
 var conti = d3.select("#container")
-    //svg_height = parseInt(conti.style('height'), 10),
+    svg_height = parseInt(conti.style('height'), 10),
     svg_width = parseInt(conti.style('width'), 10),
     svg_height = 0.25*svg_width + 1.5*padding
     
-    //svg_width = 4*svg_height - 6*padding
-    
-    
-    
-
-var box_width = (svg_width - 2*padding) / 4,
-    box_heigth = box_width
-
-var graph_height = (3*box_width)/4 ;
-
-
-// Set the range and make equal parts
-var x = d3.scale.ordinal().rangeRoundBands([0, box_width], .1, 0.1)
-        .domain(["old", "new"])
 
 
 d3.json("data.json", function(error, data){
   if (error) throw error;
+
+  var n = data.length
+  console.log(n)
+  var box_width = (svg_width - 2*padding) / n,
+      box_heigth = box_width
+
+  var graph_height = (3*box_width)/ n ;
+  var graph_height = (3*box_width)/4 ;
+
+
+
+  // Set the range and make equal parts
+  var x = d3.scale.ordinal().rangeRoundBands([0, box_width], .1, 0.1)
+        .domain(["old", "new"])
+
+
+
 
 var all = data.map(elt => elt.old).concat(data.map(elt => elt.new)),
     max = d3.max(all)
@@ -110,11 +115,10 @@ var rect_new = graph.append("rect")
 
 // ------------> Arrowzzzzz
         // main line
-
+        
         graph.append("line")
             .attr("x1", x.rangeBand() + 5 + box_width/5 + box_width/10 )
             .attr("x2", x.rangeBand() + 5 + box_width/5 + box_width/10 )
-
             .attr("y1",function(d) { return y(d.old)})
             .attr("y2", function(d) { return y(d.new)})
             .attr("stroke-width", 1)
@@ -145,8 +149,7 @@ var rect_new = graph.append("rect")
             .attr("x1", x.rangeBand() + 5 + box_width/5 + box_width/10 - 6 )
             .attr("x2", x.rangeBand() + 5 + box_width/5 + box_width/10 + 6 )
             .attr("y1", function(d) { return y(d.old)})
-            .attr("y2", function(d) { return y(d.old)})
-            
+            .attr("y2", function(d) { return y(d.old)})            
             .attr("stroke-width", 1)
             .attr("stroke", "white")
 
@@ -215,7 +218,7 @@ var oldies = d3.selectAll(".old_bar")
                    
              })
 
-  var newbies = d3.selectAll(".new_bar")
+var newbies = d3.selectAll(".new_bar")
 
   newbies.on('mouseover', function(d){
                    d3.selectAll(".old_bar").style({opacity:'0.2'});

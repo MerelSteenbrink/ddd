@@ -5,7 +5,8 @@
         "old": 100,
         "new": 150,
         "delta": 60
-    }, {
+    },
+     {
         "name": "Trump",
         "old": 200,
         "new": 150,
@@ -15,10 +16,21 @@
         "old": 102,
         "new": 103,
         "delta": 1
-    }, {
+    },
+     {
         "name": "Tim Barrow",
         "old": 140,
         "new": 30,
         "delta": -40
+    }, {
+        "name": "Princess Nokia",
+        "old": 4,
+        "new": 400,
+        "delta": 200
+    },{
+        "name": "Miri",
+        "old": 300,
+        "new": 4,
+        "delta": -102
     }
 ]
