@@ -9,6 +9,7 @@ var colors = [{
   color: "#2478A1",
   class: "new_bar"
 }]
+
 var color = ["#00BC94", "#2478A1"];
 var padding = 20
 
@@ -76,15 +77,7 @@ var rect_old = graph.append("rect")
                   .attr("height", function(d) {return box_width - y(d.old)})
                   .style("fill", color[0])
                   .style("transition", "all 800ms ease")
-//buzz scores on top
-          graph.append("text")
-                .text(function(d) {return d.old})
-                .attr("y", function(d) { return y(d.old) - 3})
-                .attr("x", x.rangeBand())
-                .attr("dx", ".10em")
-                .attr("dy", ".10em")
-                .style("fill", color[0])
-                .style("font-size", "10px")
+
 
 //second rect
 var rect_new = graph.append("rect")
@@ -98,6 +91,15 @@ var rect_new = graph.append("rect")
 
 //buzz scores on top
           graph.append("text")
+                .text(function(d) {return d.old})
+                .attr("y", function(d) { return y(d.old) - 3})
+                .attr("x", x.rangeBand())
+                .attr("dx", ".10em")
+                .attr("dy", ".10em")
+                .style("fill", color[0])
+                .style("font-size", "10px")
+
+          graph.append("text")
                 .text(function(d) {return d.new})
                 .attr("y", function(d) { return y(d.new) - 3})
                 .attr("x", x.rangeBand() + 5 + box_width/5)
@@ -106,12 +108,48 @@ var rect_new = graph.append("rect")
                 .style("font-size", "10px")
                 .style("fill", color[1])
 
+// ------------> Arrowzzzzz
+        graph.append("line")
+            .attr("x1", x.rangeBand() + 5 + box_width/5 + box_width/10 )
+            .attr("x2", x.rangeBand() + 5 + box_width/5 + box_width/10 )
 
-var delta = boxes.append("text")
-                  .attr("class", "delta")
-                  .attr("x", box_width/2 + padding)
-                  .text( function(d) {return d.delta+"%"}) 
-                  .attr("text-anchor", "middle")
+            .attr("y1",function(d) { return y(d.old)})
+            .attr("y2", function(d) { return y(d.new)})
+            .attr("stroke-width", 1)
+            .attr("stroke", "white")
+            .attr("stroke-dasharray","5,2")
+
+        graph.append("line")
+            .attr("x1", x.rangeBand() + 5 + box_width/5 + box_width/10 - 6 )
+            .attr("y1",function(d) { return (d.old > d.new) ? y(d.new) - 8 : y(d.new) + 8})
+            .attr("x2", x.rangeBand() + 5 + box_width/5 + box_width/10 )
+            .attr("y2", function(d) { return y(d.new)})
+            .attr("stroke-width", 1)
+            .attr("stroke", "white")
+            
+        graph.append("line")
+            .attr("x1", x.rangeBand() + 5 + box_width/5 + box_width/10 + 6 )
+            .attr("y1",function(d) { return (d.old > d.new) ? y(d.new) - 8 : y(d.new) + 8})
+            .attr("x2", x.rangeBand() + 5 + box_width/5 + box_width/10 )
+            .attr("y2", function(d) { return y(d.new)})
+            .attr("stroke-width", 1)
+            .attr("stroke", "white")
+
+
+var deltas =  graph.append("text")
+              .attr("class", "delta")
+              .attr("x", x.rangeBand() + 5 + box_width/5 + box_width/7)
+              .text( function(d) {return d.delta+"%"}) 
+              .attr("text-anchor", "middle")
+              .attr("y", function(d) {return (( y(d.old) + y(d.new) )/ 2) })
+              .style("fill", "white")
+              .style("font-size", "10px")
+
+// var delta = boxes.append("text")
+//                   .attr("class", "delta")
+//                   .attr("x", box_width/2 + padding)
+//                   .text( function(d) {return d.delta+"%"}) 
+//                   .attr("text-anchor", "middle")
                   
 var name = boxes.append("text")
                 .text( function(d) {return d.name})
@@ -124,10 +162,10 @@ var name = boxes.append("text")
 
 // Make a legend
 
-  var legend = svg.append("g")
-                  .attr("class", "legend")
-                  .attr("width", "50px")
-                  .attr("height", "50px")
+var legend = svg.append("g")
+                .attr("class", "legend")
+                .attr("width", "50px")
+                .attr("height", "50px")
 
 
                 legend.selectAll(".blocks")
