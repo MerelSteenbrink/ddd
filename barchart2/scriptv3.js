@@ -15,11 +15,7 @@ var color = ["#00BC94", "#2478A1"]
 
 var padding = 20
 
-var conti = d3.select("#container")
-    svg_height = parseInt(conti.style('height'), 10),
-    svg_width = parseInt(conti.style('width'), 10),
-    svg_height = 0.25*svg_width + 1.5*padding
-    
+
 
 
 d3.json("data.json", function(error, data){
@@ -27,6 +23,12 @@ d3.json("data.json", function(error, data){
 
   var n = data.length
   console.log(n)
+
+  var conti = d3.select("#container")
+    svg_width = parseInt(conti.style('width'), 10),
+    svg_height = svg_width/n + 1.5*padding 
+    
+
   var box_width = (svg_width - 2*padding) / n,
       box_heigth = box_width
 
