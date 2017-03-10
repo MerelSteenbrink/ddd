@@ -1,4 +1,3 @@
-
 var padding = 20
 
 
@@ -17,7 +16,7 @@ d3.json("data.json", function(error, data){
       box_heigth = box_width
 
   var graph_height = (3*box_width)/ n ;
-  var graph_height = (3*box_width)/4 ;
+  
 
 
 
@@ -162,7 +161,6 @@ var name = boxes.append("text")
                 .attr("y", box_heigth + padding)
                 .attr("text-anchor", "start")
 
-
 // Make a legend
 
 var legend = svg.append("g")
@@ -214,14 +212,8 @@ var newbies = d3.selectAll(".new_bar")
                            
              })
     
-  rect_old.on('mouseout', function(){
-                         d3.selectAll("rect").style("opacity", "1")
-                         d3.select(".text-title").remove();
-                   });
-  rect_new.on('mouseout', function(){
-                         d3.selectAll("rect").style("opacity", "1")
-                         d3.select(".text-title").remove();
-                   });
+  rect_old.on('mouseout', function(){ d3.selectAll("rect").style("opacity", "1")  });
+  rect_new.on('mouseout', function(){ d3.selectAll("rect").style("opacity", "1")  });
 
 
                    
