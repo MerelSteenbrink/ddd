@@ -1,0 +1,48 @@
+#container {
+	
+	padding: 50px;
+	width: 85vw;
+	color: white;
+}
+
+
+body{
+	font-family: "Lato", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+   	background: #414950;	  	
+	color: white;	
+}
+
+/*text{
+	fill: white;
+}
+*/
+rect{
+	/*opacity: 0.5;*/
+}
+
+.topaint{
+		background-color: rgba(204,204,200,0.3);         	 
+    	padding: 30px;
+}
+
+.old_fill {
+	fill: #1D0B56;
+}
+
+.new_fill {
+	fill: #D90000;
+}
+
+.percentage {
+	background-color: #E3E7E8;
+}
+
+
+.positive > text {
+	fill: #3f7722
+}
+
+
+.negative  > text{
+	fill: #1f2326;
+}
